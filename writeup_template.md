@@ -23,13 +23,23 @@ The goals / steps of this project are the following:
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+There are several steps to the pipeline:
+1. The image is placed into grayscale
+2. We utilize gaussian blurring to smooth things & reduce noise
+3. We utilize canny edge detection
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+[canny]: ./writeup/canny.png "Canny"
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
+[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 
-![alt text][image1]
+
+
+4. We mask the image with region processing to isolate the lane lines further
+5. We utilize hough transformations to discover points that could be connected via a line.
+6. We calculate & extrapolate lines from the bottom of the camera perspective through the rest of the image based on the output of #5
+7. Finally, we draw those lines overlayed on the original image.
+
+As a result, we can take each frame of a video and show lines on it into a final video.
 
 
 ### 2. Identify potential shortcomings with your current pipeline
